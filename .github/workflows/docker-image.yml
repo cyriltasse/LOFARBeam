@@ -1,0 +1,22 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Ubuntu 18.04 [Python 3.6]
+      run: docker build . --file Dockerfiles/ubuntu-18.04 --tag lofarbeam_1804:$(date +%s)
+    - name: Ubuntu 20.04 [Python 3.8]
+      run: docker build . --file Dockerfiles/ubuntu-20.04 --tag lofarbeam_2004:$(date +%s)
+    - name: Ubuntu 22.04 [Python 3.10]
+      run: docker build . --file Dockerfiles/ubuntu-22.04 --tag lofarbeam_2204:$(date +%s)
