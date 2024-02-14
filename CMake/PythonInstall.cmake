@@ -29,11 +29,9 @@ find_package(PythonInterp)
 # Derive the Python site-packages installation directory and build directory.
 if(PYTHON_EXECUTABLE)
   set(_cmd
-    "from distutils.sysconfig import get_python_lib"
-    "from os.path import join"
-    "print(join(
-       get_python_lib(plat_specific=True, standard_lib=True, prefix=''), 
-       'site-packages'))"
+  	"import sysconfig"
+	"import os"
+	"print(sysconfig.get_path('platlib')[sysconfig.get_path('platlib').find('lib'):])"
   )
   execute_process(
     COMMAND "${PYTHON_EXECUTABLE}" "-c" "${_cmd}"

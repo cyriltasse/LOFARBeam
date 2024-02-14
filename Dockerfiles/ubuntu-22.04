@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM ubuntu:22.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV DEBIAN_PRIORITY critical
@@ -18,12 +18,13 @@ RUN apt-get install -y libboost-all-dev \
                        liblapack-dev \
                        libcfitsio-dev \
                        wcslib-dev \
+		       libreadline-dev \
+		       libfftw3-dev \
                        cmake \
- 		       python3-casacore \
+		       python3-casacore \
                        casacore-dev \
                        casacore-tools \
                        casacore-data 
-
 
 #####################################################################
 ## BUILD STATION RESPONSE FROM SOURCE
